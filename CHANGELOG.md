@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Update balance and history when notification arrives
+- Login screen styles
+- Splash screen styles
 
 [0.0.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.0.0
