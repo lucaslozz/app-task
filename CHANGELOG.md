@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Add tab bar navigation with scroll between tabs
 ## [0.1.0]
 
 ### Added

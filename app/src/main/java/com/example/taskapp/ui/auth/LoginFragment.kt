@@ -10,7 +10,6 @@ import com.example.taskapp.R
 import com.example.taskapp.databinding.FragmentLoginBinding
 
 
-
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -33,9 +32,15 @@ class LoginFragment : Fragment() {
         findNavController().navigate(R.id.action_loginFragment_to_registerFragment
         )
     }
+
     binding.btnRecoveryAccount.setOnClickListener{
         findNavController().navigate(R.id.action_loginFragment_to_recoveryAccountFragment)
     }
+
+    binding.btnAccess.setOnClickListener{
+        findNavController().navigate(R.id.action_global_homeFragment2)
+    }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
