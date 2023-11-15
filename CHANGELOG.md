@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-- Add tab bar navigation with scroll between tabs
+[0.2.0]
+
+### Added
+- Float button and navigation to FormTask screen
+- FormTask screen styles
+- Tab bar navigation with scroll between tabs
 ## [0.1.0]
 
 ### Added
@@ -17,5 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Login screen styles
 - Splash screen styles
 
+[0.2.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.2.0
 [0.1.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.1.0
 [0.0.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.0.0
