@@ -1,13 +1,16 @@
 package com.example.taskapp.ui.auth
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.taskapp.R
 import com.example.taskapp.databinding.FragmentLoginBinding
+import com.example.taskapp.utils.showBottomSheet
 
 
 class LoginFragment : Fragment() {
@@ -27,21 +30,41 @@ class LoginFragment : Fragment() {
         initListener()
     }
 
-    private fun  initListener(){
-    binding.btnRegister.setOnClickListener{
-        findNavController().navigate(R.id.action_loginFragment_to_registerFragment
-        )
+    private fun initListener() {
+        binding.btnRegister.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_loginFragment_to_registerFragment
+            )
+        }
+
+        binding.btnRecoveryAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_recoveryAccountFragment)
+        }
+
+        binding.btnAccess.setOnClickListener {
+            validateData()
+        }
+
     }
 
-    binding.btnRecoveryAccount.setOnClickListener{
-        findNavController().navigate(R.id.action_loginFragment_to_recoveryAccountFragment)
+    private fun validateData() {
+        val email = binding.edtEmail.text.trim()
+        val password = binding.edtPassword.text.trim()
+
+        if (email.isNotEmpty()) {
+            if (password.isNotEmpty()) {
+                findNavController().navigate(R.id.action_global_homeFragment2)
+            } else {
+                showBottomSheet(message = R.string.password_empty)
+            }
+
+        } else {
+            Log.i("test", "chegou aqui")
+           showBottomSheet(message = R.string.email_empty)
+        }
+
     }
 
-    binding.btnAccess.setOnClickListener{
-        findNavController().navigate(R.id.action_global_homeFragment2)
-    }
-
-    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
