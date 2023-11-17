@@ -17,7 +17,7 @@
     <string name="hint_edit_password">Digite sua senha</string>
 
     <!--    Login Fragment-->
-    <string name="text_title_login_fragment">Login</string>
+    <string name="text_title_login_fragment">Acessar</string>
     <string name="text_button_register_login_fragment">Criar conta</string>
     <string name="text_button_recover_login_fragment">Recuperar conta</string>
 

@@ -55,12 +55,12 @@ class LoginFragment : Fragment() {
             if (password.isNotEmpty()) {
                 findNavController().navigate(R.id.action_global_homeFragment2)
             } else {
-                showBottomSheet(message = R.string.password_empty)
+                showBottomSheet(message = getString(R.string.password_empty))
             }
 
         } else {
-            Log.i("test", "chegou aqui")
-           showBottomSheet(message = R.string.email_empty)
+
+           showBottomSheet(message = getString(R.string.email_empty))
         }
 
     }

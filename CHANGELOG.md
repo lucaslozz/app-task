@@ -7,24 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.0] - 2023.11.17
+
+- Styles theme and centralize all strings in the strings file
 - Bottomsheet component
 
-## [0.3.0]
+## [0.3.0] - - 2023.11.15
 
 ### Added
 
-- Toolbar funcionality 
+- Toolbar functionality 
 - InitToolbar extension in Fragment 
 - Toolbar component style
 
-## [0.2.0]
+## [0.2.0] - 2023.11.14
 
 ### Added
 - Float button and navigation to FormTask screen
 - FormTask screen styles
 - Tab bar navigation with scroll between tabs
 
-## [0.1.0]
+## [0.1.0] - - 2023.11.13
 
 ### Added
 - Navigation graph in auth routes
@@ -33,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Login screen styles
 - Splash screen styles
 
+[0.4.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.4.0
 [0.3.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.3.0
 [0.2.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.2.0
 [0.1.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.1.0

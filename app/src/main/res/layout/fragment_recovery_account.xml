@@ -15,8 +15,8 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/color_default"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/color_default">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Recuperar Conta"
+                    android:text="@string/text_title_toolbar_recover_account_fragment"
                     android:textColor="@color/white" />
             </com.google.android.material.appbar.MaterialToolbar>
 
@@ -49,52 +49,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:textSize="18dp"
-                android:text="Informe o seu email de cadastro para receber um link para alteração da senha."
-                android:textColor="@color/white" />
+                android:textAlignment="center"
+                android:text="@string/text_info_recover_account_fragment"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="@string/email_text"
                 android:textColor="@color/white" />
 
             <EditText
                 android:id="@+id/edtEmail"
+                style="@style/EditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="Digite o seu email"
-                android:inputType="textEmailAddress"
-                android:padding="16dp" />
+                android:hint="@string/hint_edit_email"
+                android:inputType="textEmailAddress" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Senha"
+                android:text="@string/password_text"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSend"
+                style="@style/ButtonTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_btn"
-                android:text="Enviar"
-                android:textColor="@color/color_default"
-                app:backgroundTint="@null" />
+                android:text="@string/text_button_recover_login_fragment" />
 
 
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:indeterminateTint="@color/white"
                 android:visibility="invisible"
-                tools:visibility="visible"
-                android:indeterminateTint="@color/white" />
+                tools:visibility="visible" />
 
         </LinearLayout>
     </LinearLayout>
