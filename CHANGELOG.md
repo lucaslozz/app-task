@@ -7,10 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Task Card style
+
 ## [0.4.0] - 2023.11.17
 
+### Added
+
 - Styles theme and centralize all strings in the strings file
-- Bottomsheet component
+- Bottom sheet component
 
 ## [0.3.0] - - 2023.11.15
 
