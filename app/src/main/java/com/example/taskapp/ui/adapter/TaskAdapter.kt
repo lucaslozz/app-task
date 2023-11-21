@@ -1,13 +1,21 @@
 package com.example.taskapp.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taskapp.R
+import com.example.taskapp.data.model.Status
 import com.example.taskapp.data.model.Task
 import com.example.taskapp.databinding.CardTaskBinding
 
 
-class TaskAdapter(private val taskList: List<Task>) :
+class TaskAdapter(
+    private val context: Context,
+    private val taskList: List<Task>
+) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
 
@@ -23,13 +31,46 @@ class TaskAdapter(private val taskList: List<Task>) :
 
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        var task = taskList[position]
+        val task = taskList[position]
 
-        holder.binding.textDescription.text=task.description
+        holder.binding.textDescription.text = task.description
+
+        setIndicators(task, holder)
     }
 
+    private fun setIndicators(task: Task, holder: TaskViewHolder) {
+        when (task.status) {
+            Status.TODO -> {
+                holder.binding.btnArrowBackward.isVisible = false
+                holder.binding.btnArrowBackward.setColorFilter(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.color_status_todo
+                    )
+                )
+
+                holder.binding.btnArrowForward.setColorFilter(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.color_status_done
+                    )
+                )
+            }
+
+            Status.DOING -> {
+                holder.binding.btnArrowBackward.setColorFilter(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.color_status_todo
+                    )
+                )
+            }
+
+            else -> {}
+        }
+    }
 
     override fun getItemCount() = taskList.size
 
-    inner class TaskViewHolder( var binding: CardTaskBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class TaskViewHolder(var binding: CardTaskBinding) : RecyclerView.ViewHolder(binding.root)
 }
