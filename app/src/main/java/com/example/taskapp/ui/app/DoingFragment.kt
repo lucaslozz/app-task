@@ -33,7 +33,7 @@ class DoingFragment : Fragment() {
     }
 
     private fun initRecyclerViewTask(taskList: List<Task>) {
-        taskAdapter = TaskAdapter(requireContext(), taskList)
+        taskAdapter = TaskAdapter(requireContext(), taskList){task,option->}
 
         binding.rvTasks.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTasks.setHasFixedSize(true)
@@ -41,26 +41,23 @@ class DoingFragment : Fragment() {
     }
 
     private fun getTasks() = listOf(
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
-        Task("0", "Criar nova tela do app", Status.TODO),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+        Task("0", "Criar nova tela do app", Status.DOING),
+
     )
 
 
