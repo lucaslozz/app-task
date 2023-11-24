@@ -38,13 +38,13 @@ class SplashFragment : Fragment() {
         handler.postDelayed(this::checkAuth, 3000)
     }
 
-    private fun checkAuth(){
+    private fun checkAuth() {
 
         val currentUser = auth.currentUser
 
-        if(currentUser != null){
+        if (currentUser != null) {
             findNavController().navigate(R.id.action_splashFragment_to_homeFragment2)
-        }else{
+        } else {
             findNavController().navigate(R.id.action_splashFragment_to_authentication)
         }
 

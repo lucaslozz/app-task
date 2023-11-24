@@ -59,6 +59,11 @@
         <action
             android:id="@+id/action_homeFragment2_to_formTaskFragment2"
             app:destination="@id/formTaskFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_authentication"
+            app:destination="@id/authentication"
+            app:popUpTo="@+id/homeFragment2"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/formTaskFragment2"
