@@ -7,20 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.7.0] - 2023.11.26
+
 ### Added
 
+- Password recovery
 - Login user
 - Logout user
 - Verify if the user has logged
 
-## [0.6.0]
+## [0.6.0] - 2023.11.24
 
 ### Added
 - Register user with firebase auth
 - Firebase auth
 - Event click on button task
 
-## [0.5.0]
+## [0.5.0] - 2023.11.20
 
 ### Added
 
@@ -59,6 +62,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Login screen styles
 - Splash screen styles
 
+[0.7.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.7.0
 [0.6.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.5.0
 [0.5.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.5.0
 [0.4.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.4.0
