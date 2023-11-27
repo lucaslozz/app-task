@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Save tasks on firebase realtime database
+- Firebase realtime database
+
 ## [0.7.0] - 2023.11.26
 
 ### Added

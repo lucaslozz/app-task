@@ -14,8 +14,8 @@ android {
         applicationId = "com.example.taskapp"
         minSdk = 24
         targetSdk = 33
-        versionCode = 5
-        versionName = "0.5.0"
+        versionCode = 7
+        versionName = "0.7.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +53,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-database-ktx")
 
 
     //Navigation
