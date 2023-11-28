@@ -15,6 +15,7 @@ import com.example.taskapp.data.model.Status
 import com.example.taskapp.data.model.Task
 import com.example.taskapp.databinding.FragmentTodoBinding
 import com.example.taskapp.ui.adapter.TaskAdapter
+import com.example.taskapp.utils.showBottomSheet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -73,7 +74,19 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     }
 
     private fun optionSelected(task: Task, option: Int) {
-        Toast.makeText(requireContext(), "Opção selecionada: $option", Toast.LENGTH_SHORT).show()
+        when (option) {
+            TaskAdapter.SELECT_REMOVE -> {
+                showBottomSheet(
+                    titleDialog = R.string.text_title_dialog_delete,
+                    message = getString(R.string.text_message_dialog_delete),
+                    titleButton = R.string.text_button_dialog_confirm,
+                    onClick = {
+                        deleteTask(
+                            task
+                        )
+                    })
+            }
+        }
     }
 
 
@@ -92,6 +105,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                         binding.progressBar.isVisible = false
 
                         listEmpty(taskList)
+                        taskList.reverse()
                         list(taskList)
                     }
                 }
@@ -110,6 +124,22 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         } else {
             binding.textInfo.text = ""
         }
+    }
+
+    private fun deleteTask(task: Task) {
+        reference.child("tasks").child(auth.currentUser?.uid ?: "").child(task.id).removeValue()
+            .addOnCompleteListener { result ->
+                if (result.isSuccessful) {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.text_delete_success_task,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(requireContext(), R.string.error_generic, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
     }
 
     override fun onDestroyView() {
