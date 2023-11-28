@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Retrieve tasks from firebase
 - Save tasks on firebase realtime database
 - Firebase realtime database
 

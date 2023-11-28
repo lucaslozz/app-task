@@ -14,12 +14,25 @@ import com.example.taskapp.data.model.Status
 import com.example.taskapp.data.model.Task
 import com.example.taskapp.databinding.FragmentTodoBinding
 import com.example.taskapp.ui.adapter.TaskAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.getValue
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class TodoFragment : Fragment(R.layout.fragment_todo) {
     private var _binding: FragmentTodoBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var taskAdapter: TaskAdapter
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var reference: DatabaseReference
+    private lateinit var list: List<Task>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +46,13 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
-        initRecyclerViewTask(getTasks())
+
+
+
+        auth = Firebase.auth
+        reference = Firebase.database.reference
+
+        getTasks { list -> initRecyclerViewTask(list) }
     }
 
     private fun initListeners() {
@@ -43,8 +62,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     }
 
     private fun initRecyclerViewTask(taskList: List<Task>) {
-        taskAdapter = TaskAdapter(requireContext(), taskList){task,option->
-            optionSelected(task,option)
+        taskAdapter = TaskAdapter(requireContext(), taskList) { task, option ->
+            optionSelected(task, option)
         }
 
         binding.rvTasks.layoutManager = LinearLayoutManager(requireContext())
@@ -57,31 +76,31 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     }
 
 
-private fun getTasks() = listOf(
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-    Task("0", "Criar nova tela do app", Status.TODO),
-)
+    private fun getTasks(list: (List<Task>) -> Unit) {
+        reference.child("tasks").child(auth.currentUser?.uid ?: "")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val taskList = mutableListOf<Task>()
+                    for (item in snapshot.children) {
+                        val task = item.getValue<Task>()
 
-override fun onDestroyView() {
-    super.onDestroyView()
-    _binding = null
-}
+                        if (task != null) {
+                            taskList.add(task)
+                        }
+                        list(taskList)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(), R.string.error_generic, Toast.LENGTH_SHORT)
+                        .show()
+                    list(emptyList())
+                }
+            })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
