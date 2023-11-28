@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -84,9 +85,13 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                     for (item in snapshot.children) {
                         val task = item.getValue<Task>()
 
-                        if (task != null) {
+                        if (task != null && task.status == Status.TODO) {
                             taskList.add(task)
                         }
+
+                        binding.progressBar.isVisible = false
+
+                        listEmpty(taskList)
                         list(taskList)
                     }
                 }
@@ -97,6 +102,14 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                     list(emptyList())
                 }
             })
+    }
+
+    private fun listEmpty(tasks: List<Task>) {
+        if (tasks.isEmpty()) {
+            binding.textInfo.text = getText(R.string.text_list_task_empty)
+        } else {
+            binding.textInfo.text = ""
+        }
     }
 
     override fun onDestroyView() {
