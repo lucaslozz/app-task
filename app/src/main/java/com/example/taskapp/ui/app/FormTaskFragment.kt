@@ -1,7 +1,6 @@
 package com.example.taskapp.ui.app
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,13 +14,12 @@ import com.example.taskapp.data.model.Status
 import com.example.taskapp.data.model.Task
 
 import com.example.taskapp.databinding.FragmentFormtaskBinding
+import com.example.taskapp.utils.FirebaseHelper
 import com.example.taskapp.utils.initToolbar
 import com.example.taskapp.utils.showBottomSheet
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
+
 import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+
 
 class FormTaskFragment : Fragment() {
     private var _binding: FragmentFormtaskBinding? = null
@@ -31,8 +29,6 @@ class FormTaskFragment : Fragment() {
     private var status: Status = Status.TODO
     private var newTask: Boolean = true
 
-    private lateinit var reference: DatabaseReference
-    private lateinit var auth: FirebaseAuth
 
     private val args: FormTaskFragmentArgs by navArgs()
 
@@ -48,10 +44,6 @@ class FormTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbar(binding.toolbar)
-
-        reference = Firebase.database.reference
-        auth = Firebase.auth
-
 
         getArgs()
         initListeners()
@@ -108,7 +100,6 @@ class FormTaskFragment : Fragment() {
 
             if (newTask) {
                 task = Task()
-                task.id = reference.database.reference.push().key ?: ""
             }
             task.status = status
             task.description = taskDescription
@@ -121,7 +112,8 @@ class FormTaskFragment : Fragment() {
     }
 
     private fun saveTask() {
-        reference.child("tasks").child(auth.currentUser?.uid ?: "").child(task.id).setValue(task)
+        FirebaseHelper.getDataBase().child("tasks").child(FirebaseHelper.getIdUser()).child(task.id)
+            .setValue(task)
             .addOnCompleteListener { result ->
                 if (result.isSuccessful) {
 

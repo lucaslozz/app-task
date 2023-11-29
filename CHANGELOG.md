@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+###Removed
+
+- FirebaseAuth and Firebase Database initialization
+
 ### Added
 
+- FirebaseHelper class
 - Edit tasks
-- Delete tasks 
+- Delete tasks
 - Show loading indicator when tasks are being loading
 - Retrieve tasks from firebase
 - Save tasks on firebase realtime database
@@ -28,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.6.0] - 2023.11.24
 
 ### Added
+
 - Register user with firebase auth
 - Firebase auth
 - Event click on button task
@@ -51,13 +57,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Toolbar functionality 
-- InitToolbar extension in Fragment 
+- Toolbar functionality
+- InitToolbar extension in Fragment
 - Toolbar component style
 
 ## [0.2.0] - 2023.11.14
 
 ### Added
+
 - Float button and navigation to FormTask screen
 - FormTask screen styles
 - Tab bar navigation with scroll between tabs
@@ -65,6 +72,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1.0] - - 2023.11.13
 
 ### Added
+
 - Navigation graph in auth routes
 - Recovery account screen styles
 - Register screen styles
@@ -72,10 +80,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Splash screen styles
 
 [0.7.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.7.0
+
 [0.6.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.5.0
+
 [0.5.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.5.0
+
 [0.4.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.4.0
+
 [0.3.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.3.0
+
 [0.2.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.2.0
+
 [0.1.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.1.0
+
 [0.0.0]: https://github.com/tkovs-company/mm-app/releases/tag/v0.0.0

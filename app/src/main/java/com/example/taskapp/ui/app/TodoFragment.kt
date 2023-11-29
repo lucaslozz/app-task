@@ -15,6 +15,7 @@ import com.example.taskapp.data.model.Status
 import com.example.taskapp.data.model.Task
 import com.example.taskapp.databinding.FragmentTodoBinding
 import com.example.taskapp.ui.adapter.TaskAdapter
+import com.example.taskapp.utils.FirebaseHelper
 import com.example.taskapp.utils.showBottomSheet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -32,10 +33,6 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
 
     private lateinit var taskAdapter: TaskAdapter
 
-    private lateinit var auth: FirebaseAuth
-    private lateinit var reference: DatabaseReference
-    private lateinit var list: List<Task>
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,11 +45,6 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
-
-
-
-        auth = Firebase.auth
-        reference = Firebase.database.reference
 
         getTasks { list -> initRecyclerViewTask(list) }
     }
@@ -97,7 +89,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
 
 
     private fun getTasks(list: (List<Task>) -> Unit) {
-        reference.child("tasks").child(auth.currentUser?.uid ?: "")
+        FirebaseHelper.getDataBase().child("tasks")
+            .child(FirebaseHelper.getAuth().currentUser?.uid ?: "")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val taskList = mutableListOf<Task>()
@@ -133,7 +126,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     }
 
     private fun deleteTask(task: Task) {
-        reference.child("tasks").child(auth.currentUser?.uid ?: "").child(task.id).removeValue()
+        FirebaseHelper.getDataBase().child("tasks")
+            .child(FirebaseHelper.getIdUser()).child(task.id).removeValue()
             .addOnCompleteListener { result ->
                 if (result.isSuccessful) {
                     Toast.makeText(
