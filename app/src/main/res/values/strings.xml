@@ -22,6 +22,13 @@
     <string name="text_title_dialog_delete">Deseja remover esta tarefa?</string>
     <string name="text_message_dialog_delete">Aperte em confirmar para deletar a tarefa.</string>
 
+    <!--    Erros Firebase Authentication-->
+    <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>
+    <string name="invalid_email_register_fragment">Insira um e-mail válido.</string>
+    <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
+    <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
+    <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
+
     <!--    Login Fragment-->
     <string name="text_title_login_fragment">Acessar</string>
     <string name="text_button_register_login_fragment">Criar conta</string>

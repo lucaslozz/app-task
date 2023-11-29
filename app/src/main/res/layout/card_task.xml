@@ -33,10 +33,11 @@
 
             <ImageButton
                 android:id="@+id/btnArrowBackward"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="0dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_arrow_back"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/btnEdit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btnEdit"
@@ -96,10 +97,11 @@
 
             <ImageButton
                 android:id="@+id/btnArrowForward"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="0dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/baseline_arrow_forward"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/btnEdit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btnEdit"
