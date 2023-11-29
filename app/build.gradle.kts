@@ -1,9 +1,13 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
     id("kotlin-parcelize")
+    
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+
+    id("androidx.navigation.safeargs")
 }
 
 android {

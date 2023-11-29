@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.taskapp.R
 import com.example.taskapp.data.model.Status
 import com.example.taskapp.data.model.Task
@@ -33,6 +34,7 @@ class FormTaskFragment : Fragment() {
     private lateinit var reference: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
+    private val args: FormTaskFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +52,38 @@ class FormTaskFragment : Fragment() {
         reference = Firebase.database.reference
         auth = Firebase.auth
 
+
+        getArgs()
         initListeners()
+    }
+
+    private fun getArgs() {
+        args.task?.let {
+            task = it
+
+            configTask()
+        }
+    }
+
+    private fun configTask() {
+
+        newTask = false
+        status = task.status
+        binding.editDescription.setText(task.description)
+
+        binding.textToolbar.setText(R.string.text_title_update_task)
+
+        setStatus()
+    }
+
+    private fun setStatus() {
+        binding.radioGroup.check(
+            when (task.status) {
+                Status.TODO -> R.id.rbTodo
+                Status.DONE -> R.id.rbDone
+                Status.DOING -> R.id.rbDoing
+            }
+        )
     }
 
     private fun initListeners() {
@@ -75,11 +108,10 @@ class FormTaskFragment : Fragment() {
 
             if (newTask) {
                 task = Task()
-                task.description = taskDescription
-                task.status = status
                 task.id = reference.database.reference.push().key ?: ""
-
             }
+            task.status = status
+            task.description = taskDescription
             saveTask()
         } else {
             showBottomSheet(message = getString(R.string.description_empty_form_task_fragment))
@@ -92,15 +124,24 @@ class FormTaskFragment : Fragment() {
         reference.child("tasks").child(auth.currentUser?.uid ?: "").child(task.id).setValue(task)
             .addOnCompleteListener { result ->
                 if (result.isSuccessful) {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.text_toast_message_form_task_fragment,
-                        Toast.LENGTH_SHORT
-                    ).show()
 
                     if (newTask) {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.text_toast_message_form_task_fragment,
+                            Toast.LENGTH_SHORT
+                        ).show()
+
                         findNavController().popBackStack()
+
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.text_toast_message_edit_form_task_fragment,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
+
                 } else {
                     showBottomSheet(message = getString(R.string.error_generic))
                 }

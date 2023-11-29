@@ -59,7 +59,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
 
     private fun initListeners() {
         binding.fabAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment2_to_formTaskFragment2)
+            val action = HomeFragmentDirections.actionHomeFragment2ToFormTaskFragment2(null)
+            findNavController().navigate(action)
         }
     }
 
@@ -85,6 +86,11 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                             task
                         )
                     })
+            }
+
+            TaskAdapter.SELECT_EDIT -> {
+                val action = HomeFragmentDirections.actionHomeFragment2ToFormTaskFragment2(task)
+                findNavController().navigate(action)
             }
         }
     }
